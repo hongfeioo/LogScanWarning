@@ -71,7 +71,7 @@ systemctl restart  rsyslog                              #重启服务
 Python 2.7.5 
 
 ## 作者介绍
-yihongfei  QQ:413999317   MAIL:yihf@liepin.com
+yihongfei  QQ:413999317   MAIL:yihongfei@xiaomi.com
 
 CCIE 38649
 

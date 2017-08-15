@@ -55,14 +55,44 @@ once_line = 300                                           #每次只过滤日志
 ## rsyslog 的设置
 
 ```
-vi  /etc/rsyslog.conf                                   #修改配置文件，添加这四行到末尾
+1.  如果没有rsyslog需要安装，并创建接受日志的文件夹
+yum install rsyslog -y  
+mkdir -pv /root/log
 
-###yihongfei log dir start ###
-$template logfile,    "/root/log/%fromhost-ip%"         #定义一个模板,日志文件转移到这个目录下输出
-*.*  ?logfile                                           #所有日志全部输出到这个模板路径中
-###yihongfei log dir end ###
+2.   rsyslog的配置文件需要修改
+[root@c3]# grep -v "^#" /etc/rsyslog.conf | grep -v "^$"
+$ModLoad imuxsock # provides support for local system logging (e.g. via logger command)
+$ModLoad imjournal # provides access to the systemd journal
+$ModLoad immark  # provides --MARK-- message capability
+$ModLoad imudp
+$UDPServerRun 514
+$ModLoad imtcp
+$InputTCPServerRun 514
+$WorkDirectory /var/lib/rsyslog
+$ActionFileDefaultTemplate RSYSLOG_TraditionalFileFormat
+$template logfile,"/root/log/%fromhost-ip%.log"
+*.*  ?logfile                             
+$IncludeConfig /etc/rsyslog.d/*.conf
+$OmitLocalLogging on
+$IMJournalStateFile imjournal.state
+*.info;mail.none;authpriv.none;cron.none                /var/log/messages
+authpriv.*                                              /var/log/secure
+mail.*                                                  -/var/log/maillog
+cron.*                                                  /var/log/cron
+*.emerg                                                 :omusrmsg:*
+uucp,news.crit                                          /var/log/spooler
+local7.*                                                /var/log/boot.log
 
-systemctl restart  rsyslog                              #重启服务
+ 
+3.systemctl restart  rsyslog                              #重启服务
+
+4. 检查端口
+[root@c3]# netstat -aulntp | grep rsyslog
+tcp        0      0 0.0.0.0:514             0.0.0.0:*               LISTEN      20228/rsyslogd      
+tcp6       0      0 :::514                  :::*                    LISTEN      20228/rsyslogd      
+udp        0      0 0.0.0.0:514             0.0.0.0:*                           20228/rsyslogd      
+udp6       0      0 :::514                  :::*                                20228/rsyslogd  
+
 ```
 
 

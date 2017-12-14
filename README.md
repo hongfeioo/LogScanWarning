@@ -7,7 +7,6 @@
 ## 配置文件格式
 ```
 | 日志文件名 | 设备描述|报警关键字|邮箱|手机号|
-|-----|------|----|----|----|
 |10.22.1.2| IDC2_switch1 | Authentication.is.failed;Power;Command.is.save | yihf@lie.com | 135XXXXXX |
 |127.0.0.1| mylinux  | Accepted.password | yihf@lie.com | 135XXXXXX |
 |10.22.1.3| IDC2_switch2 | LINK.UPDOWN;Configuration.is.changed;logged.in.from|grep_-v_192.168.3.3|grep_-v_10.1.8.13  | yihf@lie.com | 135XXXXXX |

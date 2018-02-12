@@ -29,7 +29,7 @@ pythonlog =  '/root/mylog.txt'                            #本程序输出的日
 
 #-------parameter-------
 sms_off = 0                                               #if you want trun off sms ,please set to 1
-mail_off = 0                                              #if you want trun off sms ,please set to 1
+mail_off = 0                                              #if you want trun off mail ,please set to 1
 MAX_process = 100                                         #多线程并发数
 once_line = 300                                           #每次只过滤日志的最后300行，当日志产生的很快时可以增大这个数
 

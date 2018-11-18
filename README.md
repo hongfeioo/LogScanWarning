@@ -7,15 +7,15 @@
 ## 配置文件格式
 ```
 | 日志文件名 | 设备描述|报警关键字|邮箱|手机号|
-|10.22.1.2| IDC2_switch1 | Authentication.is.failed;Power;Command.is.save | yihf@lie.com | 135XXXXXX |
+|10.22.1.2| IDC2_switch1 | failed;Power | yihf@lie.com | 135XXXXXX |
 |127.0.0.1| mylinux  | Accepted.password | yihf@lie.com | 135XXXXXX |
-|10.22.1.3| IDC2_switch2 | LINK.UPDOWN;Configuration.is.changed;logged.in.from|grep_-v_192.168.3.3|grep_-v_10.1.8.13  | yihf@lie.com | 135XXXXXX |
+|10.22.1.3| IDC2_switch2 | LINK.UPDOWN  | yihf@lie.com | 135XXXXXX |
 
 
 解释：
-1. 10.22.1.2   是idc2_switch1设备的日志文件名，第三个字段分别对认证失败，电源，保存命令 这三种日志信息感兴趣， 收件人邮箱和手机号.
+1. 10.22.1.2   是idc2_switch1设备的日志文件名，第三个字段分别对失败，电源 这2个关键字信息感兴趣， 收件人邮箱和手机号.
 2. 127.0.0.1   是上报本机日志的文件名，对本机的登陆日志感兴趣， 收件人邮箱和手机号.
-3. 10.22.1.3   是IDC2_switch2设备的日志文件名，针对端口UPDOWN状态，配置变更，登陆信息感兴趣（但是不包括从192.168.3.3和10.1.8.13的）， 收件人邮箱和手机号.
+3. 10.22.1.3   是IDC2_switch2设备的日志文件名，针对端口UPDOWN状态，  收件人邮箱和手机号.
 
 ** 第三个字段的感兴趣关键字提取自日志文件，多关键字使用分号分割，空格使用点代替。
 ```
